@@ -1,4 +1,4 @@
-const findByUsernameAndPassword = require("../../db/findByUsernameAndPassword");
+const findByUsername = require("../../db/findByUsername");
 const UserAccessError = require("../../error/userAccessError");
 const createToken = require("../../services/createToken");
 
@@ -8,12 +8,16 @@ module.exports = function makeLoginRoute(secret) {
     let username = body.username;
     let password = body.password;
   
-    let user = findByUsernameAndPassword(username, password);
+    let user = findByUsername(username);
     if(!user) {
-      throw new UserAccessError(`User ${username} not found.`);
+      throw new UserAccessError(`User with username: ${username} not found.`);
     } else {
-      let token = createToken(user._id, username, secret);
-      res.status(201).send({ token: token });
+      if(password == user.password) {
+        let token = createToken(user._id, username, secret);
+        res.status(201).send({ token: token });
+      } else {
+        throw new UserAccessError(`Incorrect password.`);
+      }
     }
   };
 }
