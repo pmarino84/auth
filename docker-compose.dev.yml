@@ -13,4 +13,4 @@ services:
     ports:
       - $HOST_PORT:$PORT
       - 9229:9229 # debug port
-    command: npm start
+    command: npm run serve
