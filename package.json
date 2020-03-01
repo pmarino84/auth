@@ -1,6 +1,6 @@
 {
   "name": "auth",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "description": "An express.js service for JWT authentication",
   "main": "index.js",
   "scripts": {

@@ -1,15 +1,15 @@
 const findByUsername = require("./findByUsername");
 const validPassword = require("./validPassword");
-const UserAccessError = require("../error/userAccessError");
+const UserAccessError = require("../error/UserAccessError");
 const users = require("./users");
 const makeUser = require("./makeUser");
 
 module.exports = function adUser(username, password) {
   let user;
-  if(findByUsername(username)) {
+  if (findByUsername(username)) {
     throw new UserAccessError(`User ${username} already exist!`);
   } else {
-    if(!validPassword(password)) {
+    if (!validPassword(password)) {
       throw new UserAccessError(`Wrong password!`);
     } else {
       user = makeUser(username, password);

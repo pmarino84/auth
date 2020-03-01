@@ -1,5 +1,5 @@
 const findByUsername = require("../../db/findByUsername");
-const UserAccessError = require("../../error/userAccessError");
+const UserAccessError = require("../../error/UserAccessError");
 const createToken = require("../../services/createToken");
 
 module.exports = function makeLoginRoute(secret) {
@@ -7,12 +7,12 @@ module.exports = function makeLoginRoute(secret) {
     let body = req.body;
     let username = body.username;
     let password = body.password;
-  
+
     let user = findByUsername(username);
-    if(!user) {
+    if (!user) {
       throw new UserAccessError(`User with username: ${username} not found.`);
     } else {
-      if(password == user.password) {
+      if (password == user.password) {
         let token = createToken(user._id, username, secret);
         res.status(201).send({ token: token });
       } else {
