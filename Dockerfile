@@ -17,6 +17,6 @@ WORKDIR /usr/src/app
 
 COPY --from=builder node_modules node_modules
 
-COPY ./app .
+COPY . .
 
 CMD ["node", "./index.js"]

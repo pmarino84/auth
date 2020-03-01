@@ -13,4 +13,4 @@ services:
     ports:
       - $HOST_PORT:$PORT
       - $DEBUG_HOST_PORT:$DEBUG_PORT # debug port
-    command: nodemon --legacy-watch --inspect=0.0.0.0 ./index.js
+    command: npm run serve

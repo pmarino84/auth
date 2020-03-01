@@ -7,8 +7,6 @@ services:
       context: .
       dockerfile: Dockerfile
     env_file: .env
-    environment: 
-      - SECRET_KEY=pasticcino
     volumes:
       - /usr/src/app/node_modules
     ports:
