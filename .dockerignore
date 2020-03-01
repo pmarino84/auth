@@ -1,0 +1,9 @@
+.npmignore
+node_modules
+npm-debug.log
+.vscode
+.git
+.gitignore
+.gitattributes
+docker-compose.yml
+docker-compose.dev.yml

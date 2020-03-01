@@ -5,18 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./index.js",
-    "serve": "nodemon --legacy-watch --inspect=0.0.0.0 ./index.js"
+    "start": "node ./app/index.js",
+    "serve": "nodemon --legacy-watch --inspect=0.0.0.0 ./app/index.js",
+    "docker:serve": "nodemon --legacy-watch --inspect=0.0.0.0 ./index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pmarino84/auth.git"
   },
   "keywords": [],
-  "author": {
-    "email": "pietro.marino_84@hotmail.it",
-    "name": "Pietro Marino"
-  },
+  "author": "Pietro Marino <pietro.marino_84@hotmail.it>",
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/pmarino84/auth/issues"

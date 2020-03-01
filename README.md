@@ -6,13 +6,13 @@ Managed with Docker.
 
   - Install Docker
   - Edit .env file on root folder with preferred:
-    . VERSION
-    . PORT
-    . HOST_PORT
+    - VERSION
+    - PORT
+    - HOST_PORT
 
 ## Development
 
-  Important --legacy-watch on script "npm run serve" is necessary for nodemon to restart server on file changes in window machine.
+  Important --legacy-watch on script "npm run serve" is necessary for nodemon to restart server on file changes on window machine.
 
   ### Docker:
     run commands:

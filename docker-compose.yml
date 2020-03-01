@@ -1,16 +1,16 @@
 version: "3"
 
 services:
-  web:
+  app:
     image: pmarino84/auth:$VERSION
     build:
       context: .
       dockerfile: Dockerfile
     env_file: .env
+    environment: 
+      - SECRET_KEY=pasticcino
     volumes:
-      - .:/usr/src/app
       - /usr/src/app/node_modules
     ports:
       - $HOST_PORT:$PORT
-      - 9229:9229 # debug port
-    command: npm start
+      - $DEBUG_HOST_PORT:$DEBUG_PORT # debug port
