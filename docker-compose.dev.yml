@@ -1,16 +1,56 @@
 version: "3"
 
 services:
+  # App Service
   app:
-    image: pmarino84/auth-dev:$VERSION
+    image: pmarino84/auth:$TAG_VERSION
+    container_name: app-dev
+    restart: on-failure
     build:
       context: .
       dockerfile: Dockerfile
-    env_file: .envdev
+    environment: 
+      - NODE_ENV=development
+      - PORT=$BE_PORT
+      - SECRET_KEY=$SECRET_KEY
+      - DB_USER=$DB_USER
+      - DB_USER_PASSWORD=$DB_USER_PASSWORD
+      - DB_NAME=$DB_NAME
+      - DB_PORT=$DB_PORT
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-      - $HOST_PORT:$PORT
-      - $DEBUG_HOST_PORT:$DEBUG_PORT # debug port
+      - $BE_HOST_PORT:$BE_PORT
+      - $BE_DEBUG_HOST_PORT:$BE_DEBUG_PORT
     command: npm run serve
+    depends_on:
+      - db
+    networks: 
+      - appnet
+  # MySQL Service
+  db:
+    image: mysql:8.0.20
+    container_name: db-dev
+    environment: 
+      - MYSQL_DATABASE=$DB_NAME
+      - MYSQL_ROOT_PASSWORD=$DB_ROOT_PASSWORD
+      - MYSQL_USER=$DB_USER
+      - MYSQL_PASSWORD=$DB_USER_PASSWORD
+    restart: always
+    ports: 
+      - $DB_PORT:3306
+    volumes: 
+      - $PWD/dbdata:/var/lib/mysql
+      - $PWD/sql:/docker-entrypoint-initdb.d
+    networks: 
+      - appnet
+    # command: --default-authentication-plugin=mysql_native_password
+volumes: 
+  dbdata:
+    driver: local
+  sql:
+    driver: local
+networks: 
+  appnet:
+    driver: bridge

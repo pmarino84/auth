@@ -6,9 +6,20 @@ Managed with Docker.
 
   - Install Docker
   - Edit .env file on root folder with preferred:
-    - VERSION
-    - PORT
-    - HOST_PORT
+    - DB_USER
+    - DB_PASSWORD
+    - DB_NAME
+    - DB_PORT
+    - BE_PORT
+    - BE_HOST_PORT
+    - BE_DEBUG_PORT
+    - BE_DEBUG_HOST_PORT
+    - NODE_ENV
+    - SECRET_KEY
+    - MYSQL_DATABASE
+    - MYSQL_ROOT_PASSWORD
+    - MYSQL_USER
+    - MYSQL_PASSWORD
 
 ## Development
 
